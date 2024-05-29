@@ -2,7 +2,7 @@ import dmc
 import glob
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+from matplotlib.animation import FuncAnimation,PillowWriter
 # class Agent:
 #     # An example of the agent to be implemented.
 #     # Your agent must extend from this class (you may add any other functions if needed).
@@ -95,17 +95,34 @@ def animate(frames):
 
     ani = FuncAnimation(fig, update, frames=frames, interval=50, blit=True)
     plt.show()
+    
+def animate_gif(frames, filename='animation.gif'):
+    fig = plt.figure()
+    plt.axis('off')
+    im = plt.imshow(frames[0])
+
+    def update(frame):
+        im.set_array(frame)
+        return [im]
+
+    ani = FuncAnimation(fig, update, frames=frames, interval=50, blit=True)
+    ani.save(filename, writer='pillow')
+    plt.close(fig)
+
+
 
 task_name = "walker_walk"
 seed = 42
 eval_env = dmc.make(task_name, seed=seed)
 avg_return, frames = eval(eval_env=eval_env, agent=Agent(24, 6), eval_episodes=1, visualize=True)
 print(avg_return)
-animate(frames)
+#animate(frames)
+animate_gif(frames,filename='walk_base.gif')
 
 task_name = "walker_run"
 seed = 42
 eval_env = dmc.make(task_name, seed=seed)
 avg_return, frames = eval(eval_env=eval_env, agent=Agent(24, 6), eval_episodes=1, visualize=True)
 print(avg_return)
-animate(frames)
+#animate(frames)
+animate_gif(frames,filename='run_base.gif')
