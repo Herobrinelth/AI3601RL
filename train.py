@@ -161,7 +161,8 @@ def train(config):
         wandb.watch(agent, log="gradients", log_freq=10)
         reward_run = 0
         reward_walk = 0
-        max_reward = 0
+        max_reward_walk = 0
+        max_reward_run = 0
         wandb.log({"Reward Run": reward_run, "Reward Walk": reward_walk, "Episode": 0, "Batches": batches}, step=batches)
         for i in range(1, config.episodes+1):
 
@@ -203,10 +204,14 @@ def train(config):
                        "Batches": batches,
                        "Episode": i})
 
-            if np.mean(average10_walk) > max_reward:
-                print("Saving checkpoints...")
-                save(config, save_name=task_name, save_dir=folder_name, model=agent.actor_local, wandb=wandb, ep=0)
-                max_reward = np.mean(average10_walk)
+            if reward_walk > max_reward_walk:
+                print("Saving walk checkpoints...")
+                save(config, save_name='walker_walk', save_dir=folder_name, model=agent.actor_local, wandb=wandb, ep=0)
+                max_reward_walk = reward_walk
+            if reward_run > max_reward_run:
+                print("Saving run checkpoints...")
+                save(config, save_name='walker_run', save_dir=folder_name, model=agent.actor_local, wandb=wandb, ep=0)
+                max_reward_run = reward_run
             # if i == 1:
             #     print("Generating gif on RUN task...")
             #     _, frames = eval(eval_env=env_run, agent=agent, eval_episodes=10, task_type='run')
