@@ -11,6 +11,8 @@ The offline dataset in `collected_data` consists of offline samples in two tasks
 - `mujoco==2.3.7`
 
 ## Train & Evaluate
+### CQL
+At first, use `cd CQL` on bash.
 
 Use `bash train.sh` on bash, you can change your hyperparameter of model in this file.
 
