@@ -206,11 +206,11 @@ def train(config):
 
             if reward_walk > max_reward_walk:
                 print("Saving walk checkpoints...")
-                save(config, save_name='walker_walk', save_dir=folder_name, model=agent.actor_local, wandb=wandb, ep=0)
+                save(config, save_name=task_name, save_dir=folder_name, model=agent.actor_local, wandb=wandb, ep=0)
                 max_reward_walk = reward_walk
             if reward_run > max_reward_run:
                 print("Saving run checkpoints...")
-                save(config, save_name='walker_run', save_dir=folder_name, model=agent.actor_local, wandb=wandb, ep=0)
+                save(config, save_name=task_name, save_dir=folder_name, model=agent.actor_local, wandb=wandb, ep=0)
                 max_reward_run = reward_run
             # if i == 1:
             #     print("Generating gif on RUN task...")
