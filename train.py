@@ -59,12 +59,11 @@ def prep_dataloader(episodes, batch_size=256):
     dones = None
     for i in range(len(episodes)):
         episode = episodes[i]
-
-        state = torch.from_numpy(episode['observation']).float()
-        action = torch.from_numpy(episode['action']).float()
-        reward = torch.from_numpy(episode['reward']).float()
-        next_state = torch.cat((state[1:], state[-1:]), dim=0)
-        done = torch.zeros(1001, 1).long()
+        next_state = torch.from_numpy(episode['observation']).float()[1:]
+        state = torch.from_numpy(episode['observation']).float()[0:-1]
+        action = torch.from_numpy(episode['action']).float()[1:]
+        reward = torch.from_numpy(episode['reward']).float()[1:]
+        done = torch.zeros(1001, 1).long()[1:]
         done[-1][0] = 1
         if i == 0:
             states = state
