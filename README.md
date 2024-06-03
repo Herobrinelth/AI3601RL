@@ -12,6 +12,11 @@ The offline dataset in `collected_data` consists of offline samples in two tasks
 
 ## Train & Evaluate
 ### CQL
-Use `bash train.sh` on bash, you can change your hyperparameter of model in this file.
+Use `bash train.sh` on bash, you can change your hyperparameter of the model in this file.
 
 Use `bash evaluate.sh` on bash, you **must** set all hyperparameters of the specific model you want to evaluate manually, details for hyperparameters can be found in the checkpoint dir `configs.txt`.
+
+### CDS
+Run `agent_train_eval_CDS.py` directly to train and save the model. Remember to create a folder for model saving before running. 
+
+To change parameters, check **first few lines** of the main function in `agent_train_eval_CDS.py`.
