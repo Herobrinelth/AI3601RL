@@ -51,6 +51,8 @@ def main():
     device = 'cuda'
     device = torch.device(device)
     folder_name="model_save"#save model in folder , create it in your work_dir first!
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
     #----------create env-----------
     #set config
     task_name="walker_run"#env for walk/run
