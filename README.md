@@ -1,5 +1,5 @@
 # AI3601RL 
-## Bolun Zhang, Nange Wang, Tianhua Li
+## Bolun Zhang*, Nange Wang*, Tianhua Li*
 ## Offline Dataset
 
 The offline dataset in `collected_data` consists of offline samples in two tasks (walker_run and walker_walk), each having two levels of data qualities (medium and medium-replay), where the medium data has higher overall quality than medium-replay. The data was collected in the replay buffer when training a TD3 agent in the walker_walk and walker_run environment. The folder `custom_dmc_tasks` contains the environment specifications for the tasks. In the example given in `agent_example.py`, you may refer to the `load_data` function for offline data loading and the `eval` function for testing in these environments.
